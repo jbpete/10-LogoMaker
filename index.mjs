@@ -3,11 +3,13 @@ import fs from 'fs';
 import path from 'path';
 const __dirname = path.resolve();
 import inquirer from 'inquirer';
-import { Circle, Square } from './lib/shapes.mjs';
+import { Circle, Square, Triangle } from './lib/shapes.mjs'
 
 const picHeight = 300;
 const picWidth = 300;
 
+
+//This inquirer promt gathers the user input that is then used to generate the logo
 inquirer
     .prompt([
         {
@@ -17,7 +19,7 @@ inquirer
             validate: (input) => input.length <= 4
         },
         {
-            input: 'input',
+            type: 'input',
             name: 'fontColor',
             message: 'Enter your desired font color as a hexadecimal code',
             validate: (input) => {
@@ -29,7 +31,7 @@ inquirer
             type: 'list',
             name: 'shape',
             message: 'Choose a shape:',
-            choices: ['Circle', 'Square']
+            choices: ['Circle', 'Square', 'Triangle']
         },
         {
             type: 'input',
@@ -56,7 +58,7 @@ inquirer
                     return `
                         <text x="${this._attributes.x}" y="${this._attributes.y}"
                         text-anchor="${this._attributes['text-anchor']}"
-                        fill="{this._attributes.fill}" font-size="${fontSize}">
+                        fill="${this._attributes.fill}" font-size="${fontSize}">
                             ${this._text}
                         </text>
                         `
